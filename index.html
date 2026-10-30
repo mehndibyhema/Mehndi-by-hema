@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -41,13 +40,13 @@
 
         .logo {
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
             letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 10px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
@@ -56,6 +55,9 @@
             text-decoration: none;
             font-size: 0.8rem;
             cursor: pointer;
+            padding: 4px 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
         }
 
         /* Hero Section */
@@ -288,4 +290,174 @@
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=500" alt="Arabic Mehndi">
                 <h3>Arabic Floral Pattern</h3>
-                <p>Arabic Design
+                <p>Arabic Design</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Page -->
+    <div id="book" class="page-section">
+        <div class="section-title">
+            <h2>Book Your Slot</h2>
+            <p>Fill out details to book via WhatsApp</p>
+        </div>
+        <form class="custom-form" onsubmit="sendToWhatsApp(event)" style="text-align: left;">
+            <div class="form-group">
+                <label>Aapka Naam</label>
+                <input type="text" id="clientName" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="clientPhone" placeholder="Mobile Number" required>
+            </div>
+            <div class="form-group">
+                <label>Design Type</label>
+                <select id="clientDesign">
+                    <option>Bridal Mehndi</option>
+                    <option>Arabic Mehndi</option>
+                    <option>Simple / Party Mehndi</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;">Book via WhatsApp</button>
+        </form>
+    </div>
+
+    <!-- Payment Page -->
+    <div id="pay" class="page-section">
+        <div class="section-title">
+            <h2>Online Payment</h2>
+            <p>Scan QR code or use UPI ID to pay advance</p>
+        </div>
+        <div class="custom-form">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Advance Booking Payment</h3>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Google Pay / PhonePe / Paytm</p>
+            
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=yourupi@oksbi&pn=HemaArya" alt="Payment QR Code" style="width: 180px; height: 180px; border-radius: 8px; border: 1px solid #ddd;">
+            
+            <div class="payment-box">
+                <p style="font-size: 0.85rem; color: #444;">Aapki UPI ID:</p>
+                <div class="upi-id">hemaarya@paytm</div>
+                <p style="font-size: 0.75rem; color: #777;">Payment ke baad screenshot WhatsApp par bhejein.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Page -->
+    <div id="reviews" class="page-section">
+        <div class="section-title">
+            <h2>Client Reviews</h2>
+            <p>What our happy customers say</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Hema ji ki mehndi ka design behad sundar tha aur rang bhi bahut dark aaya meri shaadi me. Thank you so much!"</p>
+                <h4>- Priya Sharma</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"Professional work and very neat application. Sabhi ko designs bahut pasand aaye."</p>
+                <h4>- Neha Gupta</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Page -->
+    <div id="admin" class="page-section">
+        <div class="section-title">
+            <h2>Admin Dashboard</h2>
+            <p>Website par naye designs upload karein</p>
+        </div>
+
+        <form class="custom-form" onsubmit="addNewDesign(event)" style="text-align: left;">
+            <h3 style="color: var(--primary); margin-bottom: 15px;">+ Add New Design</h3>
+            
+            <div class="form-group">
+                <label>Design Ka Title</label>
+                <input type="text" id="designTitle" placeholder="e.g. Modern Full Hand Mehndi" required>
+            </div>
+
+            <div class="form-group">
+                <label>Category / Type</label>
+                <input type="text" id="designCategory" placeholder="e.g. Bridal / Arabic / Simple" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Gallery Se Photo Select Karein</label>
+                <input type="file" id="designImage" accept="image/*" required>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width:100%;">Publish Design</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Mehndi by Hema Arya • Artistry, Tradition & Elegance</p>
+        <p>Contact / WhatsApp: +91 9115241269</p>
+    </footer>
+
+    <script>
+        // Page Navigation Function
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+            });
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        // WhatsApp Booking Integration (Aapka number yahan set hai)
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const design = document.getElementById('clientDesign').value;
+
+            const ownerWhatsApp = "919115241269"; 
+            const message = `Hello Hema ji, mujhe mehndi booking karni hai.%0A%0AName: ${name}%0APhone: ${phone}%0ADesign Type: ${design}`;
+            
+            window.open(`https://wa.me/${ownerWhatsApp}?text=${message}`, '_blank');
+        }
+
+        // Add Design Live from Admin Panel
+        function addNewDesign(event) {
+            event.preventDefault();
+
+            const title = document.getElementById('designTitle').value;
+            const category = document.getElementById('designCategory').value;
+            const imageInput = document.getElementById('designImage');
+
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const grid = document.getElementById('designGrid');
+
+                    const newCard = document.createElement('div');
+                    newCard.className = 'card';
+                    newCard.innerHTML = `
+                        <img src="${e.target.result}" alt="${title}">
+                        <h3>${title}</h3>
+                        <p>${category}</p>
+                    `;
+
+                    grid.prepend(newCard);
+
+                    alert('Shabaash! Naya design safaltapoorvak add ho gaya hai!');
+                    
+                    document.getElementById('designTitle').value = '';
+                    document.getElementById('designCategory').value = '';
+                    imageInput.value = '';
+                    showSection('home');
+                };
+
+                reader.readAsDataURL(imageInput.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>
+
