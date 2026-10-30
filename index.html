@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -263,7 +265,7 @@
             <a onclick="showSection('book')">Book</a>
             <a onclick="showSection('pay')">Pay</a>
             <a onclick="showSection('reviews')">Reviews</a>
-            <a onclick="showSection('admin')">Admin</a>
+            <a onclick="checkAdmin()">Admin</a>
         </div>
     </nav>
 
@@ -409,7 +411,17 @@
             window.scrollTo(0, 0);
         }
 
-        // WhatsApp Booking Integration (Aapka number yahan set hai)
+        // Admin Password Protection Function
+        function checkAdmin() {
+            const password = prompt("Admin Password Darj Karein:");
+            if (password === "Jayhind7607") {
+                showSection('admin');
+            } else if (password !== null) {
+                alert("Galat Password! Aapko access nahi hai.");
+            }
+        }
+
+        // WhatsApp Booking Integration
         function sendToWhatsApp(event) {
             event.preventDefault();
             const name = document.getElementById('clientName').value;
@@ -460,4 +472,3 @@
     </script>
 </body>
 </html>
-
