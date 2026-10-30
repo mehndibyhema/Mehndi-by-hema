@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -44,17 +45,23 @@
             letter-spacing: 1px;
         }
 
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
         .nav-links a {
             color: white;
             text-decoration: none;
-            margin-left: 15px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            cursor: pointer;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 50px 20px 30px;
+            padding: 40px 20px 20px;
             background: linear-gradient(180deg, #f7eae1 0%, var(--bg-light) 100%);
         }
 
@@ -95,7 +102,7 @@
         /* Section Title */
         .section-title {
             text-align: center;
-            margin: 40px 0 10px;
+            margin: 30px 0 10px;
         }
 
         .section-title h2 {
@@ -110,35 +117,10 @@
             margin-top: 5px;
         }
 
-        /* Filters */
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-
-        .filter-btn.active {
-            background-color: var(--accent);
-            color: var(--primary-dark);
-            font-weight: bold;
-        }
-
         /* Designs Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
             padding: 20px;
             max-width: 1000px;
@@ -156,7 +138,7 @@
 
         .card img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
         }
 
@@ -170,7 +152,33 @@
             font-size: 0.85rem;
         }
 
-        /* Sections */
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            font-size: 0.85rem;
+            color: #555;
+            border-left: 4px solid var(--accent);
+        }
+
+        .testimonial-card h4 {
+            color: var(--primary);
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Page Sections */
         .page-section {
             display: none;
         }
@@ -179,14 +187,15 @@
             display: block;
         }
 
-        /* Form */
-        .booking-form {
-            max-width: 400px;
+        /* Form & Payment Card */
+        .custom-form {
+            max-width: 420px;
             margin: 20px auto;
             padding: 20px;
             background: white;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
         }
 
         .form-group {
@@ -199,6 +208,7 @@
             margin-bottom: 5px;
             font-size: 0.9rem;
             color: var(--primary);
+            font-weight: 600;
         }
 
         .form-group input, .form-group select {
@@ -207,17 +217,51 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
+        .payment-box {
+            background: #fff8f0;
+            border: 2px dashed var(--accent);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .upi-id {
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+            border: 1px solid #ddd;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 40px;
+            font-size: 0.85rem;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
     <nav>
-        <div class="logo">✦ MEHNDI BY HEMA ARYA</div>
+        <div class="logo">✦ HEMA ARYA</div>
         <div class="nav-links">
-            <a href="#" onclick="showSection('home')">Designs</a>
-            <a href="#" onclick="showSection('book')">Book Now</a>
-            <a href="#" onclick="showSection('admin')">Admin</a>
+            <a onclick="showSection('home')">Designs</a>
+            <a onclick="showSection('book')">Book</a>
+            <a onclick="showSection('pay')">Pay</a>
+            <a onclick="showSection('reviews')">Reviews</a>
+            <a onclick="showSection('admin')">Admin</a>
         </div>
     </nav>
 
@@ -226,81 +270,22 @@
         <section class="hero">
             <div class="tagline">Artistry • Tradition • Elegance</div>
             <h1>Mehndi by Hema Arya</h1>
-            <p>Beautiful henna designs for your beautiful moments. Explore the collection and send a booking request.</p>
-            <button class="btn-primary" onclick="showSection('book')">Explore Designs</button>
+            <p>Beautiful henna designs for weddings, parties and special moments.</p>
+            <button class="btn-primary" onclick="showSection('book')">Book Your Slot</button>
         </section>
 
         <div class="section-title">
             <h2>Our Mehndi Collection</h2>
-            <p>Find a design that makes your occasion special</p>
+            <p>Explore latest designs</p>
         </div>
 
-        <div class="filters">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Bridal</button>
-            <button class="filter-btn">Arabic</button>
-            <button class="filter-btn">Simple</button>
-        </div>
-
-        <div class="grid">
+        <div class="grid" id="designGrid">
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500" alt="Bridal Mehndi">
-                <h3>Royal Bridal Mehndi</h3>
-                <p>Full Hand Traditional Design</p>
+                <h3>Royal Bridal Design</h3>
+                <p>Bridal Mehndi</p>
             </div>
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=500" alt="Arabic Mehndi">
                 <h3>Arabic Floral Pattern</h3>
-                <p>Modern & Elegant Style</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Booking Page -->
-    <div id="book" class="page-section">
-        <div class="section-title">
-            <h2>Book Your Slot</h2>
-            <p>Fill out the details below to check availability</p>
-        </div>
-        <form class="booking-form" onsubmit="alert('Aapka booking request bhej diya gaya hai!'); return false;">
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" placeholder="Apna Naam Likhein" required>
-            </div>
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input type="tel" placeholder="Mobile Number" required>
-            </div>
-            <div class="form-group">
-                <label>Select Type</label>
-                <select>
-                    <option>Bridal Mehndi</option>
-                    <option>Arabic Mehndi</option>
-                    <option>Simple/Party Mehndi</option>
-                </select>
-            </div>
-            <button type="submit" class="btn-primary" style="width:100%;">Submit Booking</button>
-        </form>
-    </div>
-
-    <!-- Admin Page -->
-    <div id="admin" class="page-section">
-        <div class="section-title">
-            <h2>Admin Dashboard</h2>
-            <p>Manage your mehndi designs and bookings</p>
-        </div>
-        <div style="text-align: center; padding: 20px;">
-            <p>Welcome, Hema! Yahan se aap naye designs photo add kar sakti hain.</p>
-        </div>
-    </div>
-
-    <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('.page-section').forEach(sec => {
-                sec.classList.remove('active');
-            });
-            document.getElementById(sectionId).classList.add('active');
-        }
-    </script>
-</body>
-</html>
+                <p>Arabic Design
